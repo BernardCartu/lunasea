@@ -15,6 +15,7 @@ import 'package:lunasea/modules/sonarr.dart';
 import 'package:lunasea/modules/overseerr.dart';
 import 'package:lunasea/modules/sabnzbd.dart';
 import 'package:lunasea/modules/nzbget.dart';
+import 'package:lunasea/modules/qbittorrent.dart';
 import 'package:lunasea/modules/tautulli.dart';
 
 import 'package:lunasea/modules/dashboard/core/state.dart';
@@ -27,6 +28,7 @@ const MODULE_DASHBOARD_KEY = 'dashboard';
 const MODULE_EXTERNAL_MODULES_KEY = 'external_modules';
 const MODULE_LIDARR_KEY = 'lidarr';
 const MODULE_NZBGET_KEY = 'nzbget';
+const MODULE_QBITTORRENT_KEY = 'qbittorrent';
 const MODULE_OVERSEERR_KEY = 'overseerr';
 const MODULE_RADARR_KEY = 'radarr';
 const MODULE_SABNZBD_KEY = 'sabnzbd';
@@ -61,7 +63,9 @@ enum LunaModule {
   @HiveField(9)
   TAUTULLI(MODULE_TAUTULLI_KEY),
   @HiveField(10)
-  WAKE_ON_LAN(MODULE_WAKE_ON_LAN_KEY);
+  WAKE_ON_LAN(MODULE_WAKE_ON_LAN_KEY),
+  @HiveField(12)
+  QBITTORRENT(MODULE_QBITTORRENT_KEY);
 
   final String key;
   const LunaModule(this.key);
@@ -92,6 +96,8 @@ enum LunaModule {
         return LunaModule.WAKE_ON_LAN;
       case MODULE_EXTERNAL_MODULES_KEY:
         return LunaModule.EXTERNAL_MODULES;
+      case MODULE_QBITTORRENT_KEY:
+        return LunaModule.QBITTORRENT;
     }
     return null;
   }
@@ -143,6 +149,8 @@ extension LunaModuleEnablementExtension on LunaModule {
         return LunaProfile.current.wakeOnLANEnabled;
       case LunaModule.EXTERNAL_MODULES:
         return !LunaBox.externalModules.isEmpty;
+      case LunaModule.QBITTORRENT:
+        return LunaProfile.current.qbittorrentEnabled;
     }
   }
 }
@@ -174,6 +182,8 @@ extension LunaModuleMetadataExtension on LunaModule {
         return 'Wake on LAN';
       case LunaModule.EXTERNAL_MODULES:
         return 'lunasea.ExternalModules'.tr();
+      case LunaModule.QBITTORRENT:
+        return 'qBittorent';
     }
   }
 
@@ -203,6 +213,8 @@ extension LunaModuleMetadataExtension on LunaModule {
         return Icons.settings_remote_rounded;
       case LunaModule.EXTERNAL_MODULES:
         return Icons.settings_ethernet_rounded;
+      case LunaModule.QBITTORRENT:
+        return LunaIcons.QBITTORRENT;
     }
   }
 
@@ -232,6 +244,8 @@ extension LunaModuleMetadataExtension on LunaModule {
         return LunaColours.accent;
       case LunaModule.EXTERNAL_MODULES:
         return LunaColours.accent;
+      case LunaModule.QBITTORRENT:
+        return const Color(0xFF5997DF);
     }
   }
 
@@ -261,6 +275,8 @@ extension LunaModuleMetadataExtension on LunaModule {
         return null;
       case LunaModule.EXTERNAL_MODULES:
         return null;
+      case LunaModule.QBITTORRENT:
+        return 'https://www.qbittorrent.org/';
     }
   }
 
@@ -290,6 +306,8 @@ extension LunaModuleMetadataExtension on LunaModule {
         return null;
       case LunaModule.EXTERNAL_MODULES:
         return null;
+      case LunaModule.QBITTORRENT:
+        return 'https://github.com/qbittorrent/qBittorrent';
     }
   }
 
@@ -319,6 +337,8 @@ extension LunaModuleMetadataExtension on LunaModule {
         return 'Wake Your Machine';
       case LunaModule.EXTERNAL_MODULES:
         return 'Access External Modules';
+      case LunaModule.QBITTORRENT:
+        return 'https://github.com/qbittorrent/qBittorrent';
     }
   }
 
@@ -348,6 +368,8 @@ extension LunaModuleMetadataExtension on LunaModule {
         return 'Wake on LAN is an industry standard protocol for waking computers up from a very low power mode remotely by sending a specially constructed packet to the machine.';
       case LunaModule.EXTERNAL_MODULES:
         return 'LunaSea allows you to add links to additional modules that are not currently supported allowing you to open the module\'s web GUI without having to leave LunaSea!';
+      case LunaModule.QBITTORRENT:
+        return 'Allows torrenting';
     }
   }
 }
@@ -379,6 +401,8 @@ extension LunaModuleRoutingExtension on LunaModule {
         return null;
       case LunaModule.EXTERNAL_MODULES:
         return LunaRoutes.externalModules.root.path;
+      case LunaModule.QBITTORRENT:
+        return LunaRoutes.qbittorrent.root.path;
     }
   }
 
@@ -408,6 +432,8 @@ extension LunaModuleRoutingExtension on LunaModule {
         return SettingsRoutes.CONFIGURATION_WAKE_ON_LAN;
       case LunaModule.EXTERNAL_MODULES:
         return SettingsRoutes.CONFIGURATION_EXTERNAL_MODULES;
+      case LunaModule.QBITTORRENT:
+        return SettingsRoutes.CONFIGURATION_QBITTORRENT;
     }
   }
 
@@ -505,6 +531,8 @@ extension LunaModuleExtension on LunaModule {
         return context.read<TautulliState>();
       case LunaModule.EXTERNAL_MODULES:
         return null;
+      case LunaModule.QBITTORRENT:
+        return context.read<QBittorentState>();
     }
   }
 

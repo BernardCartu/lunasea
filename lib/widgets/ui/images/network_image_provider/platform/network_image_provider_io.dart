@@ -34,7 +34,7 @@ class IO implements LunaNetworkImageProvider {
       url,
       headers: headers,
       cacheManager: LunaImageCache().instance,
-      errorListener: () {},
+      //errorListener: () {},
     );
   }
 

@@ -25,9 +25,7 @@ extension RadarrCreditTypeExtension on RadarrCreditType {
         return 'crew';
       case RadarrCreditType.CAST:
         return 'cast';
-      default:
-        return null;
-    }
+      }
   }
 
   String? get readable {
@@ -36,8 +34,6 @@ extension RadarrCreditTypeExtension on RadarrCreditType {
         return 'Crew';
       case RadarrCreditType.CAST:
         return 'Cast';
-      default:
-        return null;
-    }
+      }
   }
 }

@@ -149,6 +149,27 @@ class LunaProfile extends HiveObject {
   @HiveField(43, defaultValue: <String, String>{})
   Map<String, String> overseerrHeaders;
 
+  @JsonKey()
+  @HiveField(51, defaultValue: false)
+  bool qbittorrentEnabled;
+
+  @JsonKey()
+  @HiveField(52, defaultValue: <String, String>{})
+  Map<String, String> qbittorrentHeaders;
+
+  @JsonKey()
+  @HiveField(53, defaultValue: '')
+  String qbittorrentHost;
+
+  @JsonKey()
+  @HiveField(54, defaultValue: '')
+  String qbittorrentUser;
+
+  @JsonKey()
+  @HiveField(55, defaultValue: '')
+  String qbittorrentPass;
+
+
   LunaProfile._internal({
     //Lidarr
     required this.lidarrEnabled,
@@ -190,6 +211,12 @@ class LunaProfile extends HiveObject {
     required this.overseerrHost,
     required this.overseerrKey,
     required this.overseerrHeaders,
+    //QBittorrent
+    required this.qbittorrentEnabled,
+    required this.qbittorrentHost,
+    required this.qbittorrentUser,
+    required this.qbittorrentPass,
+    required this.qbittorrentHeaders,
   });
 
   factory LunaProfile({
@@ -233,6 +260,12 @@ class LunaProfile extends HiveObject {
     String? overseerrHost,
     String? overseerrKey,
     Map<String, String>? overseerrHeaders,
+    //QBittorrent
+    bool? qbittorrentEnabled,
+    String? qbittorrentHost,
+    String? qbittorrentUser,
+    String? qbittorrentPass,
+    Map<String, String>? qbittorrentHeaders,
   }) {
     return LunaProfile._internal(
       // Lidarr
@@ -275,6 +308,12 @@ class LunaProfile extends HiveObject {
       overseerrHost: overseerrHost ?? '',
       overseerrKey: overseerrKey ?? '',
       overseerrHeaders: overseerrHeaders ?? {},
+      //QBittorrent
+      qbittorrentEnabled: qbittorrentEnabled ?? false,
+      qbittorrentHost: qbittorrentHost ?? '',
+      qbittorrentUser: qbittorrentUser ?? '',
+      qbittorrentPass: qbittorrentPass ?? '',
+      qbittorrentHeaders: qbittorrentHeaders ?? {},
     );
   }
 

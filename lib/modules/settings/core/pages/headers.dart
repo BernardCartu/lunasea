@@ -119,6 +119,8 @@ class _State extends State<SettingsHeaderRoute> with LunaScrollControllerMixin {
         return LunaProfile.current.overseerrHeaders;
       case LunaModule.TAUTULLI:
         return LunaProfile.current.tautulliHeaders;
+      case LunaModule.QBITTORRENT:
+        return LunaProfile.current.qbittorrentHeaders;
     }
   }
 
@@ -148,6 +150,8 @@ class _State extends State<SettingsHeaderRoute> with LunaScrollControllerMixin {
         return context.read<TautulliState>().reset();
       case LunaModule.OVERSEERR:
         return context.read<OverseerrState>().reset();
+      case LunaModule.QBITTORRENT:
+        return;
     }
   }
 }

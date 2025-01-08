@@ -49,6 +49,10 @@ import 'package:lunasea/modules/settings/routes/configuration_tautulli/pages/def
 import 'package:lunasea/modules/settings/routes/configuration_tautulli/pages/headers.dart';
 import 'package:lunasea/modules/settings/routes/configuration_tautulli/route.dart';
 import 'package:lunasea/modules/settings/routes/configuration_wake_on_lan/route.dart';
+import 'package:lunasea/modules/settings/routes/configuration_qbittorrent/pages/connection_details.dart';
+import 'package:lunasea/modules/settings/routes/configuration_qbittorrent/pages/default_pages.dart';
+import 'package:lunasea/modules/settings/routes/configuration_qbittorrent/pages/headers.dart';
+import 'package:lunasea/modules/settings/routes/configuration_qbittorrent/route.dart';
 import 'package:lunasea/modules/settings/routes/donations/pages/thank_you.dart';
 import 'package:lunasea/modules/settings/routes/donations/route.dart';
 import 'package:lunasea/modules/settings/routes/notifications/route.dart';
@@ -111,6 +115,10 @@ enum SettingsRoutes with LunaRoutesMixin {
   CONFIGURATION_TAUTULLI_CONNECTION_DETAILS('connection_details'),
   CONFIGURATION_TAUTULLI_CONNECTION_DETAILS_HEADERS('headers'),
   CONFIGURATION_TAUTULLI_DEFAULT_PAGES('default_pages'),
+  CONFIGURATION_QBITTORRENT('qbittorrent'),
+  CONFIGURATION_QBITTORRENT_CONNECTION_DETAILS('connection_details'),
+  CONFIGURATION_QBITTORRENT_CONNECTION_DETAILS_HEADERS('headers'),
+  CONFIGURATION_QBITTORRENT_DEFAULT_PAGES('default_pages'),
   CONFIGURATION_WAKE_ON_LAN('wake_on_lan'),
   DONATIONS('donations'),
   DONATIONS_THANK_YOU('thank_you'),
@@ -263,6 +271,16 @@ enum SettingsRoutes with LunaRoutesMixin {
         );
       case SettingsRoutes.CONFIGURATION_TAUTULLI_DEFAULT_PAGES:
         return route(widget: const ConfigurationTautulliDefaultPagesRoute());
+      case SettingsRoutes.CONFIGURATION_QBITTORRENT:
+        return route(widget: const ConfigurationQBittorrentRoute());
+      case SettingsRoutes.CONFIGURATION_QBITTORRENT_CONNECTION_DETAILS:
+        return route(widget: const ConfigurationQBittorrentConnectionDetailsRoute());
+      case SettingsRoutes.CONFIGURATION_QBITTORRENT_CONNECTION_DETAILS_HEADERS:
+        return route(
+          widget: const ConfigurationQBittorrentConnectionDetailsHeadersRoute(),
+        );
+      case SettingsRoutes.CONFIGURATION_QBITTORRENT_DEFAULT_PAGES:
+        return route(widget: const ConfigurationQBittorrentDefaultPagesRoute());      
       case SettingsRoutes.CONFIGURATION_WAKE_ON_LAN:
         return route(widget: const ConfigurationWakeOnLANRoute());
       case SettingsRoutes.DONATIONS:
@@ -320,6 +338,7 @@ enum SettingsRoutes with LunaRoutesMixin {
           SettingsRoutes.CONFIGURATION_SEARCH.routes,
           SettingsRoutes.CONFIGURATION_SONARR.routes,
           SettingsRoutes.CONFIGURATION_TAUTULLI.routes,
+          SettingsRoutes.CONFIGURATION_QBITTORRENT.routes,
           SettingsRoutes.CONFIGURATION_WAKE_ON_LAN.routes,
         ];
       case SettingsRoutes.CONFIGURATION_DASHBOARD:
@@ -424,6 +443,16 @@ enum SettingsRoutes with LunaRoutesMixin {
         return [
           SettingsRoutes.SYSTEM_LOGS_DETAILS.routes,
         ];
+      case SettingsRoutes.CONFIGURATION_QBITTORRENT:
+        return [
+          SettingsRoutes.CONFIGURATION_QBITTORRENT_CONNECTION_DETAILS.routes,
+          SettingsRoutes.CONFIGURATION_QBITTORRENT_DEFAULT_PAGES.routes,
+        ];
+      case SettingsRoutes.CONFIGURATION_QBITTORRENT_CONNECTION_DETAILS:
+        return [
+          SettingsRoutes.CONFIGURATION_QBITTORRENT_CONNECTION_DETAILS_HEADERS.routes,
+        ];
+
       default:
         return const <GoRoute>[];
     }

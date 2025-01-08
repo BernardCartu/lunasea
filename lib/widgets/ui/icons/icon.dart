@@ -76,4 +76,5 @@ class LunaIcons {
   static const IconData TAUTULLI = IconData(0xe80f, fontFamily: _fontFamily);
   static const IconData THETVDB = IconData(0xe820, fontFamily: _fontFamily);
   static const IconData TVMAZE = IconData(0xe821, fontFamily: _fontFamily);
+  static const IconData QBITTORRENT = IconData(0xe800, fontFamily: _fontFamily);
 }
